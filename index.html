@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج سيرة ذاتية احترافية | CV Template Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#12233d;
+    --navy2:#1b3357;
+    --accent:#0d9488;
+    --accent2:#14b8a6;
+    --ink:#1a2433;
+    --muted:#5c6b7f;
+    --line:#e3e8ef;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#eef1f6;
+    font-family:'Cairo',system-ui,sans-serif;
+    color:var(--ink);
+    padding:0 0 60px;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  /* ---------- TOOLBAR (screen only) ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:50;
+    background:#fff;border-bottom:1px solid var(--line);
+    padding:14px 20px;
+    display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;
+    box-shadow:0 2px 14px rgba(18,35,61,.07);
+  }
+  .toolbar .brand{font-weight:900;color:var(--navy);font-size:15px;margin-inline-end:auto}
+  .toolbar .brand span{color:var(--accent)}
+  .tbtn{
+    border:1px solid var(--line);background:#fff;color:var(--navy);
+    font-family:inherit;font-weight:700;font-size:13px;
+    padding:9px 18px;border-radius:10px;cursor:pointer;transition:.2s;
+  }
+  .tbtn:hover{border-color:var(--accent);color:var(--accent)}
+  .tbtn.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .tbtn.print{background:var(--accent);border-color:var(--accent);color:#fff}
+  .tbtn.print:hover{background:var(--accent2);color:#fff}
+
+  .notice{
+    max-width:210mm;margin:22px auto 0;padding:14px 18px;
+    background:#fff8e6;border:1px solid #f5d98a;border-radius:12px;
+    font-size:13px;font-weight:600;color:#7a5b12;line-height:1.8;
+  }
+  .notice b{color:#5c430c}
+
+  /* ---------- PAGE (A4) ---------- */
+  .page{
+    width:210mm;min-height:297mm;margin:22px auto;
+    background:#fff;display:flex;
+    box-shadow:0 10px 40px rgba(18,35,61,.14);
+    overflow:hidden;
+  }
+  .page[hidden]{display:none}
+
+  /* ---------- SIDEBAR ---------- */
+  .side{
+    width:35%;background:var(--navy);color:#fff;
+    padding:16mm 7mm;display:flex;flex-direction:column;gap:7mm;
+  }
+  .avatar{
+    width:34mm;height:34mm;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:grid;place-items:center;
+    font-size:15mm;font-weight:900;color:#fff;
+    margin:0 auto 2mm;border:3px solid rgba(255,255,255,.22);
+  }
+  .side-name{text-align:center;font-size:5.4mm;font-weight:900;line-height:1.3}
+  .side-role{
+    text-align:center;font-size:3.1mm;font-weight:700;color:var(--accent2);
+    letter-spacing:.4px;margin-top:1.5mm;
+  }
+  .s-block{border-top:1px solid rgba(255,255,255,.16);padding-top:5mm}
+  .s-title{
+    font-size:3.4mm;font-weight:900;color:#fff;
+    margin-bottom:3.5mm;letter-spacing:.5px;display:flex;align-items:center;gap:2mm;
+  }
+  .s-title::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.2)}
+
+  .c-item{
+    display:flex;align-items:center;gap:2.5mm;
+    font-size:3mm;font-weight:600;color:#d7e0ec;
+    margin-bottom:3mm;line-height:1.4;word-break:break-word;
+  }
+  .c-item svg{width:3.6mm;height:3.6mm;flex:0 0 auto;color:var(--accent2)}
+  .c-item.en{direction:ltr;font-family:'Inter',sans-serif;font-size:2.9mm}
+
+  .skill{margin-bottom:3.6mm}
+  .skill-top{display:flex;justify-content:space-between;font-size:2.9mm;font-weight:700;color:#d7e0ec;margin-bottom:1.5mm}
+  .bar{height:1.7mm;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
+
+  .lang{display:flex;justify-content:space-between;align-items:center;font-size:3mm;font-weight:600;color:#d7e0ec;margin-bottom:3mm}
+  .dots{display:flex;gap:1.3mm}
+  .dots b{width:2.4mm;height:2.4mm;border-radius:50%;background:rgba(255,255,255,.2)}
+  .dots b.f{background:var(--accent2)}
+
+  /* ---------- MAIN ---------- */
+  .main{width:65%;padding:16mm 9mm;display:flex;flex-direction:column;gap:6mm}
+
+  .m-name{font-size:8.2mm;font-weight:900;color:var(--navy);line-height:1.15;letter-spacing:-.3px}
+  .m-role{
+    font-size:4mm;font-weight:700;color:var(--accent);margin-top:1.5mm;
+    padding-bottom:3mm;border-bottom:2.5px solid var(--accent);
+  }
+
+  .sec-title{
+    font-size:3.8mm;font-weight:900;color:var(--navy);
+    margin-bottom:3.5mm;display:flex;align-items:center;gap:2.5mm;
+    text-transform:uppercase;letter-spacing:.6px;
+  }
+  .sec-title::before{
+    content:"";width:3.5mm;height:3.5mm;border-radius:2px;
+    background:var(--accent);flex:0 0 auto;
+  }
+
+  .summary{font-size:3.1mm;line-height:1.85;color:var(--muted);font-weight:500}
+
+  .item{margin-bottom:4.5mm;position:relative;padding-inline-start:5mm;border-inline-start:1.5px solid var(--line)}
+  .item:last-child{margin-bottom:0}
+  .item::before{
+    content:"";position:absolute;inset-inline-start:-2.1mm;top:1.2mm;
+    width:2.6mm;height:2.6mm;border-radius:50%;
+    background:#fff;border:1.6px solid var(--accent);
+  }
+  .item-head{display:flex;justify-content:space-between;align-items:baseline;gap:3mm;flex-wrap:wrap}
+  .item-head h4{font-size:3.4mm;font-weight:800;color:var(--ink);line-height:1.4}
+  .date{
+    font-size:2.6mm;font-weight:800;color:var(--accent);
+    background:#e6f7f5;padding:1mm 2.5mm;border-radius:99px;white-space:nowrap;
+  }
+  .company{font-size:2.9mm;font-weight:700;color:var(--muted);margin:1mm 0 1.8mm}
+  .item ul{padding-inline-start:4mm;display:flex;flex-direction:column;gap:1.2mm}
+  .item li{font-size:2.9mm;line-height:1.7;color:var(--muted);font-weight:500}
+  .item li::marker{color:var(--accent)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:2mm}
+  .chip{
+    font-size:2.7mm;font-weight:700;color:var(--navy);
+    background:#f1f5f9;border:1px solid var(--line);
+    padding:1.6mm 3mm;border-radius:99px;
+  }
+
+  /* ---------- PRINT ---------- */
+  @page{size:A4;margin:0}
+  @media print{
+    body{background:#fff;padding:0}
+    .toolbar,.notice{display:none!important}
+    .page{margin:0;box-shadow:none;width:210mm;height:297mm;min-height:297mm;page-break-after:always}
+    .page[hidden]{display:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOOLBAR ============ -->
+<div class="toolbar">
+  <div class="brand">نموذج <span>سيرة ذاتية</span> احترافية</div>
+  <button class="tbtn on" id="bAr" onclick="show('ar')">العربية</button>
+  <button class="tbtn" id="bEn" onclick="show('en')">English</button>
+  <button class="tbtn print" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+</div>
+
+<div class="notice">
+  <b>⚠️ ده نموذج تجريبي:</b> الاسم ورقم التليفون والإيميل وكل البيانات هنا <b>وهمية للعرض فقط</b> — الغرض منها إن حضرتك تشوف الشكل والتصميم.
+  في السيرة الحقيقية بتاعتك، البيانات كلها بتتغيّر بالاسم والرقم والخبرات بتاعتك، والملف بيتسلّم <b>PDF جاهز للطباعة والإرسال</b>.
+</div>
+
+<!-- ============ ARABIC CV ============ -->
+<div class="page" id="cvAr" dir="rtl">
+
+  <aside class="side">
+    <div class="avatar">أ.م</div>
+    <div>
+      <div class="side-name">أحمد محمود السيد</div>
+      <div class="side-role">أخصائي تسويق رقمي</div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-title">معلومات التواصل</div>
+      <div class="c-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        <span class="en">0100 000 0000</span>
+      </div>
+      <div class="c-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        <span class="en">ahmed.demo@email.com</span>
+      </div>
+      <div class="c-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>المنصورة — الدقهلية</span>
+      </div>
+      <div class="c-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9h4v2a3 3 0 0 1 3-2c3 0 4 2 4 5v7h-4v-6c0-2-1-3-2-3s-2 1-2 3v6h-3Z"/></svg>
+        <span class="en">linkedin.com/in/demo</span>
+      </div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-title">المهارات</div>
+      <div class="skill">
+        <div class="skill-top"><span>التسويق الرقمي</span><span>95%</span></div>
+        <div class="bar"><i style="width:95%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>إدارة السوشيال ميديا</span><span>90%</span></div>
+        <div class="bar"><i style="width:90%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>إعلانات فيسبوك وانستجرام</span><span>85%</span></div>
+        <div class="bar"><i style="width:85%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>كتابة المحتوى الإعلاني</span><span>88%</span></div>
+        <div class="bar"><i style="width:88%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>تحليل البيانات والتقارير</span><span>75%</span></div>
+        <div class="bar"><i style="width:75%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>التصميم (Canva / Photoshop)</span><span>80%</span></div>
+        <div class="bar"><i style="width:80%"></i></div>
+      </div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-title">اللغات</div>
+      <div class="lang">
+        <span>العربية</span>
+        <span class="dots"><b class="f"></b><b class="f"></b><b class="f"></b><b class="f"></b><b class="f"></b></span>
+      </div>
+      <div class="lang">
+        <span>الإنجليزية</span>
+        <span class="dots"><b class="f"></b><b class="f"></b><b class="f"></b><b class="f"></b><b></b></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header>
+      <div class="m-name">أحمد محمود السيد</div>
+      <div class="m-role">أخصائي تسويق رقمي | 3 سنوات خبرة</div>
+    </header>
+
+    <section>
+      <div class="sec-title">الملف الشخصي</div>
+      <p class="summary">
+        أخصائي تسويق رقمي بخبرة 3 سنوات في إدارة حملات السوشيال ميديا والإعلانات الممولة.
+        حققت نمو في المبيعات بنسبة تصل إلى 45% لعملاء في قطاعات التجارة الإلكترونية والمطاعم.
+        متمكّن من بناء استراتيجيات محتوى مبنية على البيانات، وإدارة الميزانيات الإعلانية بكفاءة عالية.
+      </p>
+    </section>
+
+    <section>
+      <div class="sec-title">الخبرة العملية</div>
+
+      <div class="item">
+        <div class="item-head">
+          <h4>أخصائي تسويق رقمي</h4>
+          <span class="date">2023 — الآن</span>
+        </div>
+        <div class="company">شركة النيل للتجارة الإلكترونية — المنصورة</div>
+        <ul>
+          <li>إدارة حملات إعلانية بميزانية شهرية تتجاوز 40,000 جنيه مع معدل عائد 5.2x.</li>
+          <li>بناء خطة محتوى شهرية لـ 3 منصات، أدت لزيادة المتابعين بنسبة 120% في 6 أشهر.</li>
+          <li>إعداد تقارير أداء أسبوعية واتخاذ قرارات تحسين مبنية على البيانات.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h4>منسّق تسويق</h4>
+          <span class="date">2022 — 2023</span>
+        </div>
+        <div class="company">وكالة إبداع للتسويق — القاهرة</div>
+        <ul>
+          <li>التنسيق بين فريق التصميم والعملاء لتسليم أكثر من 60 حملة إعلانية.</li>
+          <li>كتابة النصوص الإعلانية لـ 15 عميلاً في قطاعات مختلفة.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h4>متدرب تسويق</h4>
+          <span class="date">2021 — 2022</span>
+        </div>
+        <div class="company">دلتا جروب — طلخا</div>
+        <ul>
+          <li>تحليل بيانات السوق وإعداد دراسات منافسة لخطوط إنتاج جديدة.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-title">المؤهلات العلمية</div>
+      <div class="item">
+        <div class="item-head">
+          <h4>بكالوريوس التجارة — إدارة الأعمال</h4>
+          <span class="date">2018 — 2022</span>
+        </div>
+        <div class="company">جامعة المنصورة — تقدير: جيد جداً</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-title">الدورات والشهادات</div>
+      <div class="chips">
+        <span class="chip">Google Digital Marketing</span>
+        <span class="chip">Meta Blueprint — إعلانات</span>
+        <span class="chip">أساسيات SEO</span>
+        <span class="chip">تحليل بيانات بجوجل</span>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ============ ENGLISH CV ============ -->
+<div class="page" id="cvEn" dir="ltr" hidden>
+
+  <aside class="side">
+    <div class="avatar">A.M</div>
+    <div>
+      <div class="side-name">Ahmed M. Elsayed</div>
+      <div class="side-role">Digital Marketing Specialist</div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-title">Contact</div>
+      <div class="c-item en">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        <span>+20 100 000 0000</span>
+      </div>
+      <div class="c-item en">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        <span>ahmed.demo@email.com</span>
+      </div>
+      <div class="c-item en">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Mansoura, Egypt</span>
+      </div>
+      <div class="c-item en">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9h4v2a3 3 0 0 1 3-2c3 0 4 2 4 5v7h-4v-6c0-2-1-3-2-3s-2 1-2 3v6h-3Z"/></svg>
+        <span>linkedin.com/in/demo</span>
+      </div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-title">Skills</div>
+      <div class="skill">
+        <div class="skill-top"><span>Digital Marketing</span><span>95%</span></div>
+        <div class="bar"><i style="width:95%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>Social Media Management</span><span>90%</span></div>
+        <div class="bar"><i style="width:90%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>Meta Ads (FB / IG)</span><span>85%</span></div>
+        <div class="bar"><i style="width:85%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>Copywriting</span><span>88%</span></div>
+        <div class="bar"><i style="width:88%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>Data Analysis & Reporting</span><span>75%</span></div>
+        <div class="bar"><i style="width:75%"></i></div>
+      </div>
+      <div class="skill">
+        <div class="skill-top"><span>Design (Canva / Photoshop)</span><span>80%</span></div>
+        <div class="bar"><i style="width:80%"></i></div>
+      </div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-title">Languages</div>
+      <div class="lang">
+        <span>Arabic</span>
+        <span class="dots"><b class="f"></b><b class="f"></b><b class="f"></b><b class="f"></b><b class="f"></b></span>
+      </div>
+      <div class="lang">
+        <span>English</span>
+        <span class="dots"><b class="f"></b><b class="f"></b><b class="f"></b><b class="f"></b><b></b></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header>
+      <div class="m-name">Ahmed M. Elsayed</div>
+      <div class="m-role">Digital Marketing Specialist | 3 Years Experience</div>
+    </header>
+
+    <section>
+      <div class="sec-title">Profile</div>
+      <p class="summary">
+        Digital marketing specialist with 3 years of experience managing social media campaigns and paid advertising.
+        Delivered sales growth of up to 45% for clients across e-commerce and F&B sectors.
+        Skilled in building data-driven content strategies and managing ad budgets efficiently.
+      </p>
+    </section>
+
+    <section>
+      <div class="sec-title">Work Experience</div>
+
+      <div class="item">
+        <div class="item-head">
+          <h4>Digital Marketing Specialist</h4>
+          <span class="date">2023 — Present</span>
+        </div>
+        <div class="company">Nile E-Commerce — Mansoura</div>
+        <ul>
+          <li>Managed ad campaigns with a monthly budget exceeding EGP 40,000 at a 5.2x ROAS.</li>
+          <li>Built a monthly content plan across 3 platforms, growing followers by 120% in 6 months.</li>
+          <li>Prepared weekly performance reports driving data-based optimization decisions.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h4>Marketing Coordinator</h4>
+          <span class="date">2022 — 2023</span>
+        </div>
+        <div class="company">Ebdaa Marketing Agency — Cairo</div>
+        <ul>
+          <li>Coordinated between design team and clients to deliver 60+ ad campaigns.</li>
+          <li>Wrote ad copy for 15 clients across different industries.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h4>Marketing Intern</h4>
+          <span class="date">2021 — 2022</span>
+        </div>
+        <div class="company">Delta Group — Talkha</div>
+        <ul>
+          <li>Analyzed market data and prepared competitor studies for new product lines.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-title">Education</div>
+      <div class="item">
+        <div class="item-head">
+          <h4>BSc in Commerce — Business Administration</h4>
+          <span class="date">2018 — 2022</span>
+        </div>
+        <div class="company">Mansoura University — Grade: Very Good</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-title">Courses & Certifications</div>
+      <div class="chips">
+        <span class="chip">Google Digital Marketing</span>
+        <span class="chip">Meta Blueprint — Ads</span>
+        <span class="chip">SEO Fundamentals</span>
+        <span class="chip">Google Data Analytics</span>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  function show(lang){
+    const ar = document.getElementById('cvAr');
+    const en = document.getElementById('cvEn');
+    const bAr = document.getElementById('bAr');
+    const bEn = document.getElementById('bEn');
+    if(lang === 'ar'){
+      ar.hidden = false; en.hidden = true;
+      bAr.classList.add('on'); bEn.classList.remove('on');
+      document.documentElement.lang = 'ar';
+    } else {
+      ar.hidden = true; en.hidden = false;
+      bEn.classList.add('on'); bAr.classList.remove('on');
+      document.documentElement.lang = 'en';
+    }
+  }
+</script>
+</body>
+</html>
